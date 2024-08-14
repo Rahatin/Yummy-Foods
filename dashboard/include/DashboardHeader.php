@@ -5,6 +5,23 @@ if(!isset($_SESSION['auth'])){
   header("Location: ../signin.php");
 }
 
+// Dice Bear //
+define('DICE_BEAR_URL', "https://api.dicebear.com/9.x/initials/svg?seed=");
+
+
+// add emage//
+function getprofaileImg() {
+  if($_SESSION ['auth']['profile']){
+    // return// 
+    return($_SESSION ['auth']['profile']);
+    
+  }else{
+
+  return DICE_BEAR_URL . ucwords($_SESSION['auth']['name']);
+}
+}
+
+
 ?>
 
 <!doctype html>
@@ -134,7 +151,7 @@ if(!isset($_SESSION['auth'])){
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="./assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="<?= getprofaileImg() ?>" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -143,11 +160,11 @@ if(!isset($_SESSION['auth'])){
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="./assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src=" <?= getprofaileImg() ?>" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <h6 class="mb-0">John Doe</h6>
+                            <h6 class="mb-0"><?= ucwords($_SESSION['auth']['name']) ?></h6>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -157,7 +174,7 @@ if(!isset($_SESSION['auth'])){
                       <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="./profile.php">
                         <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
                       </a>
                     </li>
@@ -177,7 +194,7 @@ if(!isset($_SESSION['auth'])){
                       <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="javascript:void(0);">
+                      <a class="dropdown-item" href="../controller/Logout.php">
                         <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
                       </a>
                     </li>

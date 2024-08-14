@@ -72,6 +72,4 @@ if(count($errors) > 0){
         $_SESSION['success'] = "Sign up Successfully";
         header("Location: ../signin.php");
     }
-
-
 }
